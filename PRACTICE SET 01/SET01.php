@@ -1,7 +1,7 @@
 <?php
 
 // Function to calculate the total price of items in a shopping cart
-function calculateTotalPrice($items) {
+function calculate_total_price($items) {
   $total = 0;
   foreach ($items as $item) {
     $total += $item['price'];
@@ -10,7 +10,7 @@ function calculateTotalPrice($items) {
 }
 
 // Function to perform a series of string manipulations
-function modifyString($string) {
+function modifyStringValue($string) {
   // Remove spaces and convert to lowercase
   $string = str_replace(' ', '', $string);
   $string = strtolower($string);
@@ -18,7 +18,7 @@ function modifyString($string) {
 }
 
 // Function to check if a number is even or odd
-function isEven($number) {
+function is_Number_Even($number) {
   if ($number % 2 == 0) {
     return true;
   } else {
@@ -32,15 +32,15 @@ $items = [
   ['name' => 'Widget C', 'price' => 20],
 ];
 
-$totalPrice = calculateTotalPrice($items);
+$totalPrice = calculate_total_price($items);
 echo "Total price: $" . $totalPrice;
 
 $string = "This is a poorly written program with little structure and readability.";
-$modifiedString = modifyString($string);
+$modifiedString = modifyStringValue($string);
 echo "\nModified string: " . $modifiedString;
 
 $number = 42;
-if (isEven($number)) {
+if (is_Number_Even($number)) {
   echo "\nThe number " . $number . " is even.";
 } else {
   echo "\nThe number " . $number . " is odd.";
