@@ -3,7 +3,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $text = $_POST['text'];
     $sort = $_POST['sort'];
     $limit = $_POST['limit'];
+    // error handling
+    // Validate if text is provided
+        if (empty(trim($text))) {
+            echo 'Error: Text input is required.';
+            return;
+        } elseif (ctype_digit($text)) {
+            echo 'Error: Text input must not be a number.';
+            return;
+        }
 
+        echo "<style>
+            h2 {
+                text-align: center;
+                font-family: Arial, sans-serif;
+                margin-top: 20px;
+            }  
+            .word-list {
+                background-color: #f0f0f0;
+                border: 1px solid #ddd;
+                padding: 40px;
+                border-radius: 5px;
+                max-width: 350px;
+                margin: 20px auto;
+                list-style-type: decimal;
+            }
+            .word-item {
+                font-family: Arial, sans-serif;
+                color: #333;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+        </style>";
     // functions
     // cleaning text
     function clean_text($text) {
@@ -55,23 +86,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // function to specify the number of words to display
     function display_result($frequencies, $limit) {
-        $result = '<ul>'; // for formatting para maganda and malinis tignan
+        $result = '<ol class="word-list">';
         $count = 0; 
-    
+        
         // loop in freq array
         foreach ($frequencies as $word => $frequency) {
-            $result .= "<li>$word: $frequency</li>"; // add li to the result w word and its frequency
-            $count++; // increment counter, para makita kung ilan na yung word na displayed
+            $result .= "<li class='word-item'>$word: $frequency</li>"; //
+            $count++; // increment counter
             if ($count >= $limit) break; // if we've reached limit, break out the loop
         }
-        $result .= '</ul>';
+        $result .= '</ol>';
         return $result;
     }
+
 
     $words = clean_text($text);
     $frequencies = calculate_word_frequencies($words);
     $frequencies = sort_word_frequencies($frequencies, $sort);
     $result = display_result($frequencies, $limit);
-    echo $result; 
-};
+    echo ("<h2>Word Frequencies</h2>");
+    echo ($result);
+}
 ?>
