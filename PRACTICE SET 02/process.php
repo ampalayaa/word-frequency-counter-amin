@@ -39,9 +39,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $frequencies = array_count_values($words); //count frequency ng bawat word sa array ng mga words
         return $frequencies; //return array
       };
+      
+    // Function to sort word frequencies
+    function sort_word_frequencies($frequencies, $sort) {
+        // Check if the user wants to sort in ascending or descending order
+        if ($sort == 'asc') {
+        // Sort the freq array in ascending order
+            asort($frequencies);
+        } elseif ($sort == 'desc') {
+        // Sort the freq array in descending order
+            arsort($frequencies);
+        }
+        return $frequencies;
+   }
     
     $words = clean_text($text);
-    $counted = calculate_word_frequencies($words);
-    print_r($counted);
+    $frequencies = calculate_word_frequencies($words);
+    $frequencies = sort_word_frequencies($frequencies, $sort);
+    print_r($frequencies);
 };
 ?>
