@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'is', 'are', 'am', 'was', 'were', 'be', 'being', 'been', 
             'have', 'has', 'had', 'do', 'does', 'did' // other common words
         ]; // array of words to be ignored
-        $pattern = '/\b(' . implode('|', $articles) . ')\b/i'; // regex pattern ng iignore na words  
+        $pattern = '/\b(' . implode('|', $common_words) . ')\b/i'; // regex pattern ng iignore na words  
         $remove_articles = preg_replace($pattern, '', $remove_special_char);
         $lowered_txt = strtolower(trim($remove_articles));
         $cleaned = explode(' ', $lowered_txt);
