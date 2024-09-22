@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function calculate_word_frequencies($words) {
         $frequencies = array_count_values($words); //count frequency ng bawat word sa array ng mga words
         return $frequencies; //return array
-      };
+    };
       
     // Function to sort word frequencies
     function sort_word_frequencies($frequencies, $sort) {
@@ -51,11 +51,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             arsort($frequencies);
         }
         return $frequencies;
-   }
+    };
+
+    // function to specify the number of words to display
+    function display_result($frequencies, $limit) {
+        $result = '<ul>'; // for formatting para maganda and malinis tignan
+        $count = 0; 
     
+        // loop in freq array
+        foreach ($frequencies as $word => $frequency) {
+            $result .= "<li>$word: $frequency</li>"; // add li to the result w word and its frequency
+            $count++; // increment counter, para makita kung ilan na yung word na displayed
+            if ($count >= $limit) break; // if we've reached limit, break out the loop
+        }
+        $result .= '</ul>';
+        return $result;
+    }
+
     $words = clean_text($text);
     $frequencies = calculate_word_frequencies($words);
     $frequencies = sort_word_frequencies($frequencies, $sort);
-    print_r($frequencies);
+    $result = display_result($frequencies, $limit);
+    echo $result; 
 };
 ?>
