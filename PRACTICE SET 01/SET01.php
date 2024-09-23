@@ -20,7 +20,7 @@ function calculate_total_price($items) {
  * @param string $string The input string
  * @return string The string with spaces removed
  */
-function remove_Spaces($string) {
+function remove_spaces($string) {
     return str_replace(' ', '', $string);
 }
 
@@ -30,7 +30,7 @@ function remove_Spaces($string) {
  * @param string $string The input string
  * @return string The string in lowercase
  */
-function convert_To_Lower_Case($string) {
+function convert_to_lower_case($string) {
     return strtolower($string);
 }
 
@@ -40,8 +40,8 @@ function convert_To_Lower_Case($string) {
  * @param string $string The input string
  * @return string The modified string
  */
-function modifyStringValue($string) {
-    return convert_To_Lower_Case(remove_Spaces($string));
+function modify_string_value($string) {
+    return convert_to_lower_case(remove_spaces($string));
 }
 
 /**
@@ -50,14 +50,14 @@ function modifyStringValue($string) {
  * @param int $number The input number
  * @return bool True if the number is even, false otherwise
  */
-function is_Number_Even($number) {
+function is_number_even($number) {
     return $number % 2 === 0;
 }
 
 /**
  * Main function to demonstrate the usage of the above functions
  */
-function demonstrateFunctions() {
+function demonstrate_functions() {
     $items = [
         ['name' => 'Widget A', 'price' => 10],
         ['name' => 'Widget B', 'price' => 15],
@@ -68,17 +68,17 @@ function demonstrateFunctions() {
     echo "Total price: $" . $totalPrice . "\n";
 
     $string = "This is a poorly written program with little structure and readability.";
-    $modifiedString = modifyStringValue($string);
+    $modifiedString = modify_string_value($string);
     echo "Modified string: " . $modifiedString . "\n";
 
     $number = 42;
-    if (is_Number_Even($number)) { 
+    if (is_number_even($number)) { 
         echo "The number " . $number . " is even.\n";
     } else {
         echo "The number " . $number . " is odd.\n";
     }
 }
 
-demonstrateFunctions();
+demonstrate_functions();
 
 ?>
